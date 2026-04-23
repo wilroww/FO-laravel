@@ -7,18 +7,18 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('order_items', function (Blueprint $table) {
+        Schema::create('cart_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
+            $table->string('session_id')->nullable();
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
-            $table->integer('quantity');
-            $table->decimal('price', 10, 2);
+            $table->integer('quantity')->default(1);
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('order_items');
+        Schema::dropIfExists('cart_items');
     }
 };

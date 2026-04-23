@@ -1,0 +1,257 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+.logo {
+    font-family: 'Montez', cursive;
+    font-size: 55px;
+    color: #353839;
+}
+
+.navbar {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+height: 75px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 10px 28px;
+border-bottom: 3px solid rgba(0,0,0,0.06);
+box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+background-color: rgba(212, 178, 76, 0.8); ;
+}
+
+.logo {
+    position: fixed;
+    left: 42%;
+    text-align: center;
+    font-family: 'Montez', cursive;
+    font-size: 30px;
+    color: #353839;
+}
+
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.nav-left a,
+.nav-right a {
+  text-decoration: none;
+  color: var(--dark);
+  font-weight: 500;
+  font-size: 16px;
+  font-family: "Alice", serif;
+  padding: 6px 8px;
+}
+
+.nav-left a:hover,
+.nav-right a:hover {
+  transform: scale(.98);
+  opacity: .9;
+}
+
+.dropdown {
+    min-width: 90px;
+    padding: 15px 8px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    position: absolute;
+    top: 100%;
+    border-radius: 5px;
+    background-color: rgba(212, 178, 76, 0.8);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 25px 50px -12px;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s ease-in-out;
+}
+
+.dropdown-container:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    position: absolute;
+}
+
+.dropdown a {
+    font-size: 14px;
+    border-bottom: 1px solid #000000;
+    padding: 8px;
+    margin: 10px;
+}
+
+/* Profile dropdown that shows on hover */
+.profile-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-icon {
+  color: #353839;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 6px 8px;
+}
+
+.profile-menu {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  background-color: rgba(212, 178, 76, 0.95);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  flex-direction: column;
+  min-width: 150px;
+  z-index: 200;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-5px);
+  transition: all 0.2s ease-in-out;
+}
+
+.profile-menu a {
+  color: #353839;
+  padding: 12px;
+  text-decoration: none;
+  text-align: left;
+  display: block;
+  font-weight: 600;
+  border-radius: 6px;
+}
+
+.profile-menu a:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Navbar dropdown hover effect */
+.profile-dropdown:hover .profile-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+body {
+  margin-top: 130px; 
+  font-family: 'Alice', serif;
+  background-color: #fff;
+  color: #353839;
+}
+
+.dtText h2 {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 50px;
+  color: #353839;
+}
+
+.prodContainer {
+  display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  padding: 0 120px 60px;
+  margin: auto;
+  justify-items: center;
+}
+
+.prodBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fdfdfd;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.prodBox:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+
+.prodBox img {
+  width: 100%;
+  height: 45vh;
+  object-fit: cover;
+}
+
+.prodInfo {
+  background-color: #d4b24c;
+  color: #353839;
+  width: 100%;
+  padding: 15px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.prodInfo a {
+color: #353839;
+text-decoration: none;
+}
+
+
+.name {
+  min-height: 50px;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.rating {
+  text-align: right;
+  font-size: 14px;
+}
+
+footer {
+padding: 28px 20px;
+background: #f8f8f8;
+text-align: center;
+border-top: 1px solid rgba(0,0,0,0.04);
+}
+
+footer h2 {
+    margin: 0 0 6px;
+    font-family: 'Montez', cursive;
+    font-size: 45px;
+}
+
+footer h3 {
+    font-family: 'Alice', serif;
+    text-align: center ;
+    font-size: x-large;
+}
+
+footer p {
+    margin-bottom: 5px;
+    font-family: 'Alice', serif;
+    font-size: 16px;
+    text-align: center;
+}
+
+footer ul a {
+    text-decoration: none;
+    margin: 25px;
+    font-size: x-large;
+    gap: 20px;
+    text-align: center;
+    color: #353839;
+    cursor: pointer;
+}
+
+footer h4 {
+    margin: auto;
+    font-family: 'Alice', serif;
+    font-size: small;
+}
