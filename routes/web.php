@@ -10,6 +10,10 @@ use App\Http\Controllers\UserController;
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 
+Route::get('/login', [PageController::class, 'showLogin'])->name('login');
+Route::get('/signup', [PageController::class, 'showSignup'])->name('register');
+Route::post('/login', function() { return 'Login Logic Goes Here'; })->name('login.post');
+
 Route::get('/shop', [ProductController::class, 'index'])->name('shop.index');
 Route::get('/shop/{category}', [ProductController::class, 'category'])->name('shop.category');
 Route::get('/product/{product:slug}', [ProductController::class, 'show'])->name('product.show');
