@@ -28,4 +28,5 @@ Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
 Route::post('/orders/{order}/complete', [OrderController::class, 'complete'])->name('orders.complete');
 Route::post('/orders/{order}/remove', [OrderController::class, 'destroy'])->name('orders.destroy');
 
-Route::post('/register', [UserController::class, 'register']);
+Route::post('/register', [UserController::class, 'register'])->name('register');
+Route::post('/login', [UserController::class, 'login'])->name('login');
