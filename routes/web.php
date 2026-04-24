@@ -5,6 +5,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
@@ -22,3 +23,5 @@ Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
 Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
 Route::post('/orders/{order}/complete', [OrderController::class, 'complete'])->name('orders.complete');
 Route::post('/orders/{order}/remove', [OrderController::class, 'destroy'])->name('orders.destroy');
+
+Route::post('/register', [UserController::class, 'register']);
