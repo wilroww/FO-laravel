@@ -19,7 +19,6 @@ class ProductSeeder extends Seeder
             ['name' => 'Breath Mints', 'slug' => 'breath-mints', 'price' => 95.00, 'category' => 'fresh-breath', 'rating' => '4.3', 'image' => 'images/mint.jpg'],
             ['name' => 'Fresh Strips', 'slug' => 'fresh-strips', 'price' => 75.00, 'category' => 'fresh-breath', 'rating' => '4.1', 'image' => 'images/strips.jpg'],
             ['name' => 'Mouth Spray', 'slug' => 'mouth-spray', 'price' => 110.00, 'category' => 'fresh-breath', 'rating' => '4.4', 'image' => 'images/spray.jpg'],
-
             ['name' => 'Orthodontic Wax', 'slug' => 'orthodontic-wax', 'price' => 60.00, 'category' => 'dental-tools', 'rating' => '4.5', 'image' => 'images/wax.jpg'],
             ['name' => 'Floss Holder', 'slug' => 'floss-holder', 'price' => 130.00, 'category' => 'dental-tools', 'rating' => '4.6', 'image' => 'images/holder.jpg'],
             ['name' => 'Water Flosser', 'slug' => 'water-flosser', 'price' => 2500.00, 'category' => 'dental-tools', 'rating' => '4.9', 'image' => 'images/waterflosser.jpg'],
