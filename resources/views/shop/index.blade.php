@@ -7,7 +7,7 @@
 
 @section('content')
     @foreach(['daily-care' => 'Daily Care', 'fresh-breath' => 'Fresh Breath', 'dental-tools' => 'Dental Tools'] as $cat => $title)
-        @if(isset($products[$cat]))
+        @if(isset($products[$cat]) && $products[$cat]->count())
         <section class="shop-section">
             <h2>{{ $title }}</h2>
             <div class="products">
@@ -18,7 +18,7 @@
                      data-name="{{ $product->name }}"
                      data-price="PHP {{ number_format($product->price, 2) }}"
                      data-img="{{ asset($product->image) }}">
-                    <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
+                    <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" loading="lazy">
                     <div class="product-info">
                         <p>{{ $product->name }}</p>
                         <span>PHP {{ number_format($product->price, 2) }}</span>
@@ -31,7 +31,7 @@
         @endif
     @endforeach
 
-    @include('shop._popup')
+    @include('shop.popup')
 @endsection
 
 @section('scripts')

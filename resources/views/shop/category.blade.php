@@ -6,29 +6,28 @@
 @endsection
 
 @section('content')
-    <div class="dcText">
+    <section class="shop-section">
         <h2>{{ $categoryName }}</h2>
-    </div>
-
-    <div class="prodContainer">
-        @foreach($products as $product)
-        <div class="prodBox"
-             data-slug="{{ $product->slug }}"
-             data-id="{{ $product->id }}"
-             data-name="{{ $product->name }}"
-             data-price="PHP {{ number_format($product->price, 2) }}"
-             data-img="{{ asset($product->image) }}">
-            <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
-            <div class="prodInfo">
-                <a href="#"><p class="name">{{ $product->name }}</p></a>
-                <p class="price">PHP {{ number_format($product->price, 2) }}</p>
-                <p class="rating">{{ $product->rating }} ★</p>
+        <div class="products">
+            @foreach($products as $product)
+            <div class="product"
+                 data-slug="{{ $product->slug }}"
+                 data-id="{{ $product->id }}"
+                 data-name="{{ $product->name }}"
+                 data-price="PHP {{ number_format($product->price, 2) }}"
+                 data-img="{{ asset($product->image) }}">
+                <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" loading="lazy">
+                <div class="product-info">
+                    <p>{{ $product->name }}</p>
+                    <span>PHP {{ number_format($product->price, 2) }}</span>
+                    <div class="rating">{{ $product->rating }} ★</div>
+                </div>
             </div>
+            @endforeach
         </div>
-        @endforeach
-    </div>
+    </section>
 
-    @include('shop._popup')
+    @include('shop.popup')
 @endsection
 
 @section('scripts')

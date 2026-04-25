@@ -8,67 +8,109 @@
 @section('content')
 <div class="order-container">
     <div class="tab-buttons">
-        <button class="tab-btn active" onclick="switchTab('current')">Current Order</button>
+        <button class="tab-btn active" onclick="switchTab('current')">Current Orders</button>
         <button class="tab-btn" onclick="switchTab('history')">Order History</button>
     </div>
 
+    {{-- CURRENT ORDERS --}}
     <div class="tab-content active" id="currentOrder">
-        <h2>Current Order</h2>
         <div class="order-box">
             @if($currentOrders->isEmpty())
-                <p class="no-orders">No current orders.</p>
-                <a href="{{ route('shop.index') }}" class="order-now-btn">Order Now</a>
+                <div class="empty-state">
+                    <i class="bi bi-box-seam" style="font-size:48px;color:#ccc;"></i>
+                    <p class="no-orders">No current orders.</p>
+                    <a href="{{ route('shop.index') }}" class="btn btn-primary">Order Now</a>
+                </div>
             @else
                 @foreach($currentOrders as $order)
-                <div class="current-order-detail">
-                    <h4>Order ID: {{ $order->id }}</h4>
-                    <h4>Date: {{ $order->created_at->format('m/d/Y H:i') }}</h4>
-                    <h4>Address: {{ $order->address }}</h4>
-                    <h4>Payment: {{ $order->payment_method }}</h4>
-                    <h4>Total: PHP {{ number_format($order->total, 2) }}</h4>
-                    <hr>
-                    @foreach($order->items as $item)
-                    <div class="order-item">
-                        <img src="{{ asset($item->product->image) }}" class="itemimage" alt="{{ $item->product->name }}">
-                        <span>{{ $item->product->name }} x {{ $item->quantity }}</span>
-                        <span>PHP {{ number_format($item->price * $item->quantity, 2) }}</span>
+                <div class="order-card">
+                    <div class="order-header">
+                        <div class="order-meta">
+                            <h4>Order #<strong>{{ $order->id }}</strong></h4>
+                            <h4>{{ $order->created_at->format('F d, Y · h:i A') }}</h4>
+                        </div>
+                        <span class="status-badge status-{{ $order->status }}">{{ ucfirst($order->status) }}</span>
                     </div>
-                    @endforeach
-                    <form action="{{ route('orders.complete', $order) }}" method="POST" style="display:inline;">
-                        @csrf
-                        <button type="submit" class="transaction-complete-btn">Transaction Complete</button>
-                    </form>
+
+                    <div class="order-items">
+                        @foreach($order->items as $item)
+                        <div class="order-item">
+                            <img src="{{ asset($item->product->image) }}" alt="{{ $item->product->name }}" loading="lazy">
+                            <span class="item-name">{{ $item->product->name }}</span>
+                            <span class="item-qty">× {{ $item->quantity }}</span>
+                            <span class="item-price">PHP {{ number_format($item->price * $item->quantity, 2) }}</span>
+                        </div>
+                        @endforeach
+                    </div>
+
+                    <div class="order-footer">
+                        <div class="order-info">
+                            <small><i class="bi bi-geo-alt"></i> {{ $order->address }}</small>
+                            <small><i class="bi bi-credit-card"></i> {{ $order->payment_method }}</small>
+                        </div>
+                        <div class="order-total">Total: <strong>PHP {{ number_format($order->total, 2) }}</strong></div>
+                    </div>
+
+                    <div class="order-actions">
+                        <form action="{{ route('orders.complete', $order) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn-complete">
+                                <i class="bi bi-check-lg"></i> Transaction Complete
+                            </button>
+                        </form>
+                    </div>
                 </div>
                 @endforeach
             @endif
         </div>
     </div>
 
+    {{-- ORDER HISTORY --}}
     <div class="tab-content" id="orderHistory">
-        <h2>Order History</h2>
         <div class="history-box">
             @if($historyOrders->isEmpty())
-                <p class="no-orders">No order history.</p>
+                <div class="empty-state">
+                    <i class="bi bi-clock-history" style="font-size:48px;color:#ccc;"></i>
+                    <p class="no-orders">No order history yet.</p>
+                </div>
             @else
                 @foreach($historyOrders as $order)
-                <div class="history-order-detail">
-                    <h4>Order ID: {{ $order->id }}</h4>
-                    <h4>Date: {{ $order->created_at->format('m/d/Y H:i') }}</h4>
-                    <h4>Address: {{ $order->address }}</h4>
-                    <h4>Payment: {{ $order->payment_method }}</h4>
-                    <h4>Total: PHP {{ number_format($order->total, 2) }}</h4>
-                    <hr>
-                    @foreach($order->items as $item)
-                    <div class="order-item">
-                        <img src="{{ asset($item->product->image) }}" class="itemimage" alt="{{ $item->product->name }}">
-                        <span>{{ $item->product->name }} x {{ $item->quantity }}</span>
-                        <span>PHP {{ number_format($item->price * $item->quantity, 2) }}</span>
+                <div class="order-card history">
+                    <div class="order-header">
+                        <div class="order-meta">
+                            <h4>Order #<strong>{{ $order->id }}</strong></h4>
+                            <h4>{{ $order->created_at->format('F d, Y · h:i A') }}</h4>
+                        </div>
+                        <span class="status-badge status-completed">Completed</span>
                     </div>
-                    @endforeach
-                    <form action="{{ route('orders.destroy', $order) }}" method="POST" style="display:inline;" onsubmit="return confirm('Remove from history?');">
-                        @csrf
-                        <button type="submit" class="remove-history-btn">Remove from History</button>
-                    </form>
+
+                    <div class="order-items">
+                        @foreach($order->items as $item)
+                        <div class="order-item">
+                            <img src="{{ asset($item->product->image) }}" alt="{{ $item->product->name }}" loading="lazy">
+                            <span class="item-name">{{ $item->product->name }}</span>
+                            <span class="item-qty">× {{ $item->quantity }}</span>
+                            <span class="item-price">PHP {{ number_format($item->price * $item->quantity, 2) }}</span>
+                        </div>
+                        @endforeach
+                    </div>
+
+                    <div class="order-footer">
+                        <div class="order-info">
+                            <small><i class="bi bi-geo-alt"></i> {{ $order->address }}</small>
+                            <small><i class="bi bi-credit-card"></i> {{ $order->payment_method }}</small>
+                        </div>
+                        <div class="order-total">Total: <strong>PHP {{ number_format($order->total, 2) }}</strong></div>
+                    </div>
+
+                    <div class="order-actions">
+                        <form action="{{ route('orders.destroy', $order) }}" method="POST" onsubmit="return confirm('Remove this order from history?');">
+                            @csrf
+                            <button type="submit" class="btn-remove">
+                                <i class="bi bi-trash"></i> Remove from History
+                            </button>
+                        </form>
+                    </div>
                 </div>
                 @endforeach
             @endif

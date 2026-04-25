@@ -5,22 +5,11 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\UserController;
-
-Route::get('/login', function () {
-    return view('shop.login');
-})->name('login');
-
-Route::get('/register', function () {
-    return view('register');
-})->name('register');
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ReviewController;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
-
-Route::get('/login', [PageController::class, 'showLogin'])->name('login');
-Route::get('/signup', [PageController::class, 'showSignup'])->name('register');
-Route::post('/login', function() { return 'Login Logic Goes Here'; })->name('login.post');
 
 Route::get('/shop', [ProductController::class, 'index'])->name('shop.index');
 Route::get('/shop/{category}', [ProductController::class, 'category'])->name('shop.category');
@@ -36,5 +25,21 @@ Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
 Route::post('/orders/{order}/complete', [OrderController::class, 'complete'])->name('orders.complete');
 Route::post('/orders/{order}/remove', [OrderController::class, 'destroy'])->name('orders.destroy');
 
-Route::post('/register', [UserController::class, 'register'])->name('user.register');
-Route::post('/login', [UserController::class, 'login'])->name('user.login');
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+
+Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.post');
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/profile', [AuthController::class, 'profile'])
+     ->name('profile')
+     ->middleware('auth');
+
+Route::post('/profile', [AuthController::class, 'updateProfile'])
+     ->name('profile.update')
+     ->middleware('auth');
+
+Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
+Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
