@@ -7,6 +7,14 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 
+Route::get('/login', function () {
+    return view('shop.login');
+})->name('login');
+
+Route::get('/register', function () {
+    return view('register');
+})->name('register');
+
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 
@@ -28,5 +36,5 @@ Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
 Route::post('/orders/{order}/complete', [OrderController::class, 'complete'])->name('orders.complete');
 Route::post('/orders/{order}/remove', [OrderController::class, 'destroy'])->name('orders.destroy');
 
-Route::post('/register', [UserController::class, 'register'])->name('register');
-Route::post('/login', [UserController::class, 'login'])->name('login');
+Route::post('/register', [UserController::class, 'register'])->name('user.register');
+Route::post('/login', [UserController::class, 'login'])->name('user.login');
