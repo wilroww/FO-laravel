@@ -10,9 +10,9 @@
 <main class="log">
     <section class="Login">
         <h1 class="loginText">Login</h1>
-        <p class="signUp">Don't have an account yet? <a href="{{ route('register') }}">Sign up here</a></p>
+        <p class="signUp">Don't have an account yet? <a href="{{ route('user.register') }}">Sign up here</a></p>
         
-        <form class="loginForm" action="{{ route('login') }}" method="POST" novalidate>
+        <form class="loginForm" action="{{ route('user.login') }}" method="POST" novalidate>
             @csrf
             
             <input id="email" name="email" type="email" placeholder="Enter email here..." value="{{ old('email') }}">

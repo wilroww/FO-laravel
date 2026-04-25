@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\user;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -26,6 +27,24 @@ class UserController extends Controller
         'password' => Hash::make($request->password),
     ]);
 
-    return redirect('/login');
+    return redirect()->route('login');
+}
+
+public function login(Request $request)
+{
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
+
+    $credentials = $request->only('email', 'password');
+
+    if (Auth::attempt($credentials)) {
+        return redirect('/login'); 
+    }
+
+    return back()->withErrors([
+        'email' => 'Invalid email or password',
+    ]);
 }
 }
