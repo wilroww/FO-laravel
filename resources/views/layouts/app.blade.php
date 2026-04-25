@@ -6,19 +6,16 @@
     <title>@yield('title', 'ToothWorks')</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montez&family=Alice&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/base.css') }}">
     @yield('styles')
 </head>
 <body>
+
     @if(session('success'))
-        <div class="alert-toast" style="position:fixed;top:90px;right:20px;background:#28a745;color:#fff;padding:12px 20px;border-radius:6px;z-index:99999;">
-            {{ session('success') }}
-        </div>
+        <div class="alert-toast success">{{ session('success') }}</div>
     @endif
     @if(session('error'))
-        <div class="alert-toast" style="position:fixed;top:90px;right:20px;background:#dc3545;color:#fff;padding:12px 20px;border-radius:6px;z-index:99999;">
-            {{ session('error') }}
-        </div>
+        <div class="alert-toast error">{{ session('error') }}</div>
     @endif
 
     <nav class="navbar">
@@ -33,43 +30,80 @@
                 </div>
             </div>
             <a href="{{ route('about') }}">About</a>
-            <a href="#">Reviews</a>
+            <a href="{{ route('reviews.index') }}">Reviews</a>
         </div>
 
         <div class="logo"><h1>ToothWorks</h1></div>
 
         <div class="nav-right">
-            <a href="{{ route('cart.index') }}"><i class="bi bi-bag"></i></a>
+            <a href="{{ route('cart.index') }}" class="cart-icon" title="Cart">
+                <i class="bi bi-bag"></i>
+                @php
+                    $cartCount = auth()->check()
+                        ? \App\Models\CartItem::where('user_id', auth()->id())->count()
+                        : \App\Models\CartItem::where('session_id', session()->getId())->count();
+                @endphp
+                @if($cartCount > 0)
+                    <span class="cart-badge">{{ $cartCount }}</span>
+                @endif
+            </a>
+
             <div class="profile-dropdown">
-                <a href="#" class="profile-icon"><i class="bi bi-person-circle"></i></a>
+                <a href="#" class="profile-icon" title="Account">
+                    <i class="bi bi-person-circle"></i>
+                </a>
                 <div class="profile-menu">
-                    <a href="#">View Profile</a>
-                    <a href="#">Logout</a>
+                    @auth
+                        <a href="{{ route('profile') }}">
+                            <i class="bi bi-person"></i> View Profile
+                        </a>
+                        <div class="divider"></div>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit">
+                                <i class="bi bi-box-arrow-right"></i> Logout
+                            </button>
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}">
+                            <i class="bi bi-box-arrow-in-right"></i> Login
+                        </a>
+                        <a href="{{ route('register') }}">
+                            <i class="bi bi-person-plus"></i> Sign Up
+                        </a>
+                    @endauth
                 </div>
             </div>
         </div>
     </nav>
 
-    <main>
+    <main class="page-wrapper">
         @yield('content')
     </main>
 
     <footer>
         <h2>ToothWorks</h2>
-        <p>Smile Brighter, Live Happier</p><br><br>
-        <h3>Your #Toothified smile awaits you!</h3><br><br><br>
-        <ul>
-            <a href="#"><i class="bi bi-facebook"></i></a>
-            <a href="#"><i class="bi bi-instagram"></i></a>
-            <a href="#"><i class="bi bi-twitter-x"></i></a>
-            <a href="#"><i class="bi bi-tiktok"></i></a>
-            <a href="#"><i class="bi bi-youtube"></i></a>
-        </ul><br><br>
+        <p>Smile Brighter, Live Happier</p>
+        <h3>Your #Toothified smile awaits you!</h3>
+        <ul class="social-links">
+            <a href="https://www.facebook.com/WilrowReosa" target="_blank" rel="noopener" title="Facebook">
+                <i class="bi bi-facebook"></i>
+            </a>
+            <a href="https://www.instagram.com/wilrow.reosa.bayona/" target="_blank" rel="noopener" title="Instagram">
+                <i class="bi bi-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/@lianna_gnr?_r=1&_t=ZS-95p1gMjjeia" target="_blank" rel="noopener" title="TikTok">
+                <i class="bi bi-tiktok"></i>
+            </a>
+            <a href="https://youtube.com/@evessma?si=7WYu8yfu-nxvKOMA" target="_blank" rel="noopener" title="YouTube">
+                <i class="bi bi-youtube"></i>
+            </a>
+        </ul>
         <h4><i class="bi bi-c-circle"></i> <small><span>2025 ToothWorks Dental Clinic. All Rights Reserved.</span></small></h4>
     </footer>
 
     <script>
-        setTimeout(() => document.querySelectorAll('.alert-toast').forEach(el => el.remove()), 3000);
+        setTimeout(() => document.querySelectorAll('.alert-toast').forEach(el => el.remove()), 3500);
     </script>
     @yield('scripts')
 </body>

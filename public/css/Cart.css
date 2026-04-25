@@ -1,685 +1,283 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
-
-.logo {
-    font-family: 'Montez', cursive;
-    font-size: 55px;
-    color: #353839;
-}
-
-.navbar {
-position: fixed;
-top: 0;
-left: 0;
-right: 0;
-height: 75px;
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 10px 28px;
-border-bottom: 3px solid rgba(0,0,0,0.06);
-box-shadow: 0 1px 0 rgba(0,0,0,0.06);
-background-color: rgba(212, 178, 76, 0.8); 
-
-z-index: 9999; /* para pwede pang ma click yung lahat ng item sa navbar */
-}
-
-.logo {
-    position: fixed;
-    left: 42%;
-    text-align: center;
-    font-family: 'Montez', cursive;
-    font-size: 30px;
-    color: #353839;
-}
-
-.nav-left, .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-}
-
-.nav-left a,
-.nav-right a {
-  text-decoration: none;
-  color: var(#353839);
-  font-weight: 500;
-  font-size: 16px;
-  font-family: "Alice", serif;
-  padding: 6px 8px;
-}
-
-.nav-left a:hover,
-.nav-right a:hover {
-  transform: scale(.98);
-  opacity: .9;
-}
-
-.dropdown {
-    min-width: 90px;
-    padding: 15px 8px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    gap: 0px;
-    position: absolute;
-    top: 100%;
-    border-radius: 5px;
-    background-color: rgba(212, 178, 76, 0.8);
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 25px 50px -12px;
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.2s ease-in-out;
-}
-
-.dropdown-container:hover .dropdown {
-    opacity: 1;
-    visibility: visible;
-    position: absolute;
-}
-
-.dropdown a {
-    font-size: 14px;
-    border-bottom: 1px solid #000000;
-    padding: 8px;
-    margin: 10px;
-}
-
-.dropdown-container:hover .dropdown {
-    opacity: 1;
-    visibility: visible;
-    position: absolute;
-}
-
-.dropdown a {
-    font-size: 14px;
-    border-bottom: 1px solid #000000;
-    padding: 8px;
-    margin: 10px;
-}
-
-/* Profile dropdown that shows on hover */
-.profile-dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.profile-icon {
-  color: #353839;
-  font-size: 22px;
-  cursor: pointer;
-  padding: 6px 8px;
-}
-
-.profile-menu {
-  position: absolute;
-  top: 45px;
-  right: 0;
-  background-color: rgba(212, 178, 76, 0.95);
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-  flex-direction: column;
-  min-width: 150px;
-  z-index: 200;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-5px);
-  transition: all 0.2s ease-in-out;
-}
-
-.profile-menu a {
-  color: #353839;
-  padding: 12px;
-  text-decoration: none;
-  text-align: left;
-  display: block;
-  font-weight: 600;
-  border-radius: 6px;
-}
-
-.profile-menu a:hover {
-  background-color: rgba(255, 255, 255, 0.6);
-}
-/* Navbar dropdown hover effect */
-.profile-dropdown:hover .profile-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-/* body */
-.containerbody
-{
-  display: flex;                
-  justify-content: space-between; 
-  align-items: flex-start;      
-  gap: 20px;                  
-  padding: 20px;
-  /* padding-top: 100px; */
-
-  flex: 1;
-}
-
-/* left body */
-.leftBody{
-  width: 70%;    
-  height: 70%;      
-  max-width: 800px;    
-  max-height: 600px;
-  margin-top: 150px;  
-  margin-left: 20px;   /* left side*/
-  margin-right: auto;  /* center */
-  /*background: #f0f0f0;*/
-  padding: 20px;
-  font-family: "Alice", serif;
-  position: relative;
-  box-sizing: border-box;  
-}
-
-.leftBody .container {
-  display: flex;
-  justify-content: space-between; /* para yung botton at yung header nasa dulo ng container*/
-  align-items: center;            
-  margin-bottom: 20px;           
-}
-
-.leftBody .continueShopping{
-  width: 150px;
-  height: 25px;
-  margin-left: 100px; 
-  font-family: "Alice", serif;
-  font-size: 15px;
-  font-weight: bold;
-  background-color: rgba(212, 178, 76, 0.8);
-  border:none;
-}
-
-.leftBody .carttext
-{
-  font-size: 30px;
-  font-style: Bold;
-  font: optional;
-}
-
-.leftBody hr
-{
-  width: 100%;
-  margin: 5px auto;
-  border: none; 
-  height: 2px;
-  background-color: rgba(212, 178, 76, 0.8);
-}
-
-.leftBody .iteminfo
-{
-  display: flex;                   
-  align-items: center;             
-  justify-content: space-between; 
-  gap: 5px;                       
-  margin-top: 10px;
-}
-
-.leftBody .numItem {
-  display: flex;              
-  align-items: center;       
-  gap: 10px;                 
-  border: 2px solid rgba(212, 178, 76, 0.8);     
-  padding: 5px 10px;          
-  width: fit-content;         
-}
-
-.leftBody .itemimage {
-  width: 150px; /*auto width at height para pag nilagyan ng image automatic na siya malalagay doon*/
-  height: 150px;
-  border: 1px solid;
-  margin-right: 0px; /* space sa information ng item*/
-  float: left;
-}
-
-.leftBody .numItem button {
-  padding: 5px 10px;
-  font-size: 16px;
-  border: none;
-  background-color: white;
-  cursor: pointer;
-}
-
-.leftBody .iteminfo p {
-  width: 200px;
-  height: auto;
-  font-size: 15px;  
-  margin-top: 2px;
-  margin-right: 15px;
-  margin-left: 1px;
-  font-family: "Alice", serif;
-}
-
-.leftbody #price
-{
-  font-weight: normal;
-  padding-bottom: 15px;
-  margin-left: 10px;
-}
-
-/*group again para malagay ko sa ilalim ng plus at minus yung remove*/
-.leftBody .quantity-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-}
-
-.leftBody .remove {
-  color: #dc3545; /* red color */
-  padding: 5px 10px; /* small padding for click area */
-  font-size: 14px;
-  text-align: center;
-  cursor: pointer;
-  display: inline-block;
-  margin-top: 5px; /* small gap below quantity buttons */
-  border-radius: 4px;
-  transition: background-color 0.2s;
-}
-
-.quantity-btn,
-.remove-btn {
-  width: 32px;
-  height: 32px;
-  min-width: 32px;
-  min-height: 32px;
+.containerbody {
   display: flex;
   justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  border: none;
-  background: none;
-  cursor: pointer;
-  padding: 0;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 20px 40px 60px;
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
-.remove-btn {
-  color: red;
+.leftBody {
+  flex: 2;
+  min-width: 0;
 }
 
-.cart-item-controls {
+.cart-header {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--gold);
+}
+
+.carttext {
+  font-size: 32px;
+  font-weight: 700;
+  font-family: var(--font-body);
+}
+
+.continueShopping {
+  padding: 10px 22px;
+  background-color: var(--gold);
+  border: none;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--dark);
+  transition: all 0.2s;
+}
+
+.continueShopping:hover {
+  background-color: var(--gold-solid);
+  transform: translateY(-2px);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  color: #888;
+}
+
+.empty-state p {
+  font-size: 18px;
+  margin: 12px 0;
+}
+
+.iteminfo {
+  display: grid;
+  grid-template-columns: 90px 1fr auto 110px;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 0;
+  border-bottom: 1px solid #eee;
+  transition: background 0.2s;
+}
+
+.iteminfo:hover { background: #fdfdfd; }
+
+.itemimage {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  background: #f0f0f0;
+}
+
+.item-details { min-width: 0; }
+
+.item-name {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: var(--dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item-unit {
+  font-size: 13px;
+  color: #888;
+  margin: 0;
+}
+
+.quantity-section {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 8px;
 }
 
-.remove-btn i {
-  pointer-events: none;
-}
-
-
-/* right body */
-.rightbody
-{
-  width: 30%;    
-  height: 50%;               
-  max-width: 400px;
-  max-height: 600px;
-  margin-top: 150px;  
-  margin-right: auto;  /* center */
-  /*background: #f0f0f0;*/
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.rightbody .container {
-  display: flex;                 
-  justify-content: space-between;
-  align-items: center;          
-  width: 300px;                  
-  max-height: 10px;
-  box-sizing: border-box;
-}
-
-.rightbody #sub {
-  margin: 0;
-  font-size: 16px;
-  margin-top: 49px;
-  margin-bottom: 1px;
-  font-weight: normal;
-  font-size: 15px;
-}
-
-.rightbody #price {
-  font-size: 20px;
-  margin-top: 40px;
-  margin-left: 70px;
-  font-weight: normal;
-}
-
-.rightbody hr
-{
-  width: 100%;
-  height: 2px;
-  margin-top: 44px; /* pushes hr down */
-  margin-bottom: 0px;
-  border: none;
-  background-color: rgba(212, 178, 76, 0.8);
-}
-
-.rightbody h4
-{
-  margin-top: 15px; /* small gap below hr */
-  font-weight: normal;
-  font-size: 15px;
-}
-
-.rightbody #inputtext
-{
-  width: 100%;
-  height: 100%;
-  max-width: 350px;
-  max-height: 25px;
-  padding: 8px 12px;
-  border: 2px solid rgba(212, 178, 76, 0.8);      
-  border-radius: 5px;
-  outline: none;
-}
-
-.rightbody #pay
-{
-  height: 10px;
-  font-weight: normal;
-  padding-top: 15px;
-  font-size: 15px;
-}
-
-/*radio boxes*/
-
-.rightbody .paymentoptions {
-  display: flex;
-  flex-direction: column; 
-  gap: 10px;              
-}
-
-.rightbody .radio-box {
-  display: flex;           /* make label a flex container */
-  align-items: center;     /* vertically center text and box */
-  position: relative;
-  padding-left: 1px;  
-  padding-bottom: 1px;
-  cursor: pointer;
-  font-family: "Alice", serif;
-  font-size: 15px;
-}
-
-/* Hide original radio button */
-.rightbody .radio-box input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-}
-
-/* square box */
-.rightbody .radio-box span::before {
-  content: "";
-  display: inline-block;   
-  width: 15px;
-  height: 15px;
-  border: 2px solid  rgba(212, 178, 76, 0.8);
-  background-color: white;
-  margin-right: 5px;       /* spacing ng box and text */
-  transition: all 0.3s ease;
-}
-
-/* checked state */
-.rightbody .radio-box input:checked + span::before {
-  background-color: rgba(212, 178, 76, 0.8);
-  border-color: rgba(212, 178, 76, 0.8);
-}
-
-.rightbody #check
-{
-  border: 2px solid  rgba(212, 178, 76, 0.8);
-}
-
-/*checkbox*/
-.rightbody #checkbox
-{
-  display: flex;           /* make label a flex container */
-  align-items: center;     /* vertically center text and box */
-  position: relative;
-  padding-left: 1px;  
-  padding-top: 20px;
-  cursor: pointer;
-  font-family: "Alice", serif;
-  font-size: 15px;
-}
-
-/* Hide original radio button */
-.rightbody #checkbox input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-}
-
-/* square box */
-.rightbody #checkbox span::before {
-  content: "";
-  display: inline-block;   
-  width: 15px;
-  height: 15px;
-  border: 2px solid  rgba(212, 178, 76, 0.8);
-  background-color: white;
-  margin-right: 5px;       /* spacing ng box and text */
-  transition: all 0.3s ease;
-}
-
-/* checked state */
-.rightbody #checkbox input:checked + span::before {
-  background-color: rgba(212, 178, 76, 0.8);
-  border-color: rgba(212, 178, 76, 0.8);
-}
-
-.rightbody #submitbutton
-{
-    width: 100%;
-    max-width: 420px;
-    height: 30px;
-    background-color: rgba(212, 178, 76, 0.8); /* gold */
-    color: black;                            /* text visible */
-    border: none;
-    outline: none;  /*para hindi na mag show yung border*/
-    font-size: 16px;
-    font-family: "Alice", serif;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.rightbody #submitbutton:hover {
-    background-color: rgba(212, 178, 76, 1); /* darker gold on hover */
-}
-
-/* footer  */
-
-.page-wrapper {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-footer {
-padding: 28px 20px;
-background: #f8f8f8;
-text-align: center;
-border-top: 1px solid rgba(0,0,0,0.04);
-margin-top: auto;
-}
-
-footer h2 {
-    margin: 0 0 6px;
-    font-family: 'Montez', cursive;
-    font-size: 45px;
-}
-
-footer h3 {
-    font-family: 'Alice', serif;
-    text-align: center ;
-    font-size: x-large;
-} 
-
-footer p {
-    margin-bottom: 5px;
-    font-family: 'Alice', serif;
-    font-size: 16px;
-    text-align: center;
-}
-
-footer ul a {
-    text-decoration: none;
-    margin: 25px;
-    font-size: x-large;
-    gap: 20px;
-    text-align: center;
-    color: #353839;
-    cursor: pointer;
-}
-
-footer h4 {
-    margin: auto;
-    font-family: 'Alice', serif;
-    font-size: small;
-}
-
-/* POPUP GENERAL */
-.popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
+.numItem {
+  display: inline-flex;
   align-items: center;
-  z-index: 999;
-}
-
-.hidden {
-  display: none !important;
-}
-
-.popup-box {
-  background: white;
-  padding: 25px;
-  width: 350px;
-  border-radius: 10px;
-  text-align: center;
-  animation: fadeIn 0.2s ease-out;
-}
-
-.popup-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-.btn-primary,
-.btn-secondary {
-  padding: 10px 15px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  width: 45%;
-  font-size: 16px;
-}
-
-.btn-primary {
-  background-color: #008cff;
-  color: white;
-}
-
-.btn-secondary {
-  background-color: #ddd;
-}
-
-/* Small animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
-}
-/* ===== POPUP STYLES ===== */
-.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-.popup-content {
-  background: #fff;
-  padding: 20px 30px;
-  border-radius: 12px;
-  text-align: center;
-  max-width: 400px;
-  width: 90%;
-}
-
-.popup-content h3 {
-  margin-bottom: 15px;
-  font-family: 'Alice', serif;
-}
-
-.popup-buttons {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
-}
-
-.popup-buttons button {
-  padding: 10px 20px;
-  border: none;
+  border: 2px solid var(--gold);
   border-radius: 8px;
+  overflow: hidden;
+}
+
+.qty-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: var(--white);
   cursor: pointer;
-  font-weight: bold;
+  font-size: 16px;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dark);
 }
 
-.cancel-btn, .done-btn {
-  background-color: #ccc;
-}
+.qty-btn:hover { background: var(--gold); }
+.qty-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-.confirm-btn, .view-order-btn {
-  background-color: #28a745;
-  color: white;
-}
-
-.popup-buttons button:hover {
-  opacity: 0.8;
-}
-
- /* Footer */
-/* footer {
-  padding: 28px 20px;
-  background: #f8f8f8;
+.qty-val {
+  width: 40px;
   text-align: center;
-  border-top: 1px solid rgba(0,0,0,0.04);
+  font-size: 15px;
+  font-weight: 700;
+  font-family: var(--font-body);
 }
 
-footer h2 {
-  font-family: 'Montez', cursive;
-  font-size: 45px;
+.remove-btn {
+  color: var(--danger);
+  background: none;
+  border: none;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  font-family: var(--font-body);
+  transition: color 0.2s;
 }
 
-footer h3, footer p, footer h4 {
-  font-family: 'Alice', serif;
+.remove-btn:hover { color: #a71d2a; }
+
+.price {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--dark);
+  text-align: right;
 }
 
-footer ul a {
-  text-decoration: none;
-  margin: 25px;
-  font-size: x-large;
-  color: #353839;
-}  */
+.rightbody {
+  flex: 1;
+  min-width: 340px;
+  max-width: 400px;
+  background: #fafafa;
+  padding: 28px;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  height: fit-content;
+  position: sticky;
+  top: 100px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--gold);
+}
+
+.summary-label {
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #555;
+}
+
+.summary-price {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.form-group { margin-bottom: 16px; }
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #444;
+}
+
+.paymentoptions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.radio-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 6px;
+  transition: background 0.2s;
+  border: 1px solid transparent;
+}
+
+.radio-box:hover {
+  background: rgba(212,178,76,0.08);
+  border-color: rgba(212,178,76,0.2);
+}
+
+.radio-box input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--gold-solid);
+}
+
+#checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#checkbox input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--gold-solid);
+}
+
+#submitbutton {
+  width: 100%;
+  padding: 16px;
+  background-color: var(--gold);
+  color: var(--dark);
+  border: none;
+  font-size: 17px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+#submitbutton:hover:not(:disabled) {
+  background-color: var(--gold-solid);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212,178,76,0.3);
+}
+
+#submitbutton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 960px) {
+  .containerbody { flex-direction: column; align-items: stretch; }
+  .rightbody { width: 100%; max-width: 100%; position: static; }
+  .iteminfo { grid-template-columns: 70px 1fr auto; gap: 12px; }
+  .price { grid-column: 3; text-align: right; margin-top: -10px; }
+}
